@@ -16,6 +16,7 @@ namespace KAMI.Core
             CurrentGameId = id;
             CurrentGameVersion = version;
             if (Regex.IsMatch(id, PCSX2BiosPattern)) return new MockGame();
+            Console.WriteLine(id);
             switch (id)
             {
                 case "BLUS31006":
@@ -57,8 +58,9 @@ namespace KAMI.Core
                 case "BLES00246":
                 case "BLJM67001":
                 case "BLUS30109": return new MetalGearSolid4(ipc, id, version);
+                case "BCUS98119": return new Infamous(ipc);
                 default:
-                    throw new NotImplementedException($"Game with id '{id}' not implemented");
+                    throw new NotImplementedException($"Game with id '{id}' not implemented. Condition: {id == "BCUS98119"}");
             }
         }
     }
